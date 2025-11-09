@@ -1,0 +1,17 @@
+services:
+  localstack:
+    build: .
+    container_name: localstack-demo
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3,dynamodb
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+    networks:
+      - localstack-network
+
+networks:
+  localstack-network:
+    driver: bridge
